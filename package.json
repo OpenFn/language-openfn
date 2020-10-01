@@ -1,7 +1,7 @@
 {
-  "name": "language-template",
+  "name": "language-openfn",
   "version": "1.0.0",
-  "description": "An Language Package Template for OpenFn",
+  "description": "An (experimental) adaptor for accessing the OpenFn web API",
   "main": "lib/index.js",
   "scripts": {
     "build": "make",

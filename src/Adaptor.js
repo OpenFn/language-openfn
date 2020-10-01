@@ -28,52 +28,83 @@ export function execute(...operations) {
   };
 
   return state => {
-    return commonExecute(...operations)({
-      ...initialState,
-      ...state,
-    });
+    return commonExecute(
+      login,
+      ...operations
+      // logout
+    )({ ...initialState, ...state });
+    // .catch(e => {
+    //   console.error(e);
+    //   logout;
+    //   process.exit(1);
+    // });
   };
 }
 
+function login(state) {
+  const { host, password, username } = state.configuration;
+
+  return axios({
+    method: 'post',
+    url: `${host}/api/login`,
+    data: {
+      session: {
+        email: username,
+        password: password,
+      },
+    },
+  }).then(response => {
+    console.log('Authentication succeeded.');
+    const { jwt } = response.data;
+    return { ...state, configuration: { host, jwt } };
+  });
+}
+
+function logout(state) {
+  const { jwt } = state;
+  const { host } = state.configuration;
+  return axios({
+    method: 'post',
+    url: `${host}/api/logout`,
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  }).then(() => {
+    delete state.configuration;
+    resolve(state);
+  });
+}
+
 /**
- * Make a POST request
+ * Make a GET request
  * @example
  * execute(
- *   post(params)
+ *   get(endpoint, params)
  * )(state)
  * @constructor
  * @param {object} params - data to make the fetch
  * @returns {Operation}
  */
-export function post(params, callback) {
+export function get(path, parameters, callback) {
   return state => {
-    const { baseUrl, username, password } = state.configuration;
-    const { url, body, headers } = expandReferences(params)(state);
+    const { host, jwt } = state.configuration;
+    const { url, params } = expandReferences(parameters)(state);
+
+    console.log(path);
 
     return axios({
-      method: 'post',
-      headers: {},
-      params: {},
-      baseURL,
-      url,
-      data: body,
-      auth: { username, password },
-    })
-      .then(response => {
-        console.log(
-          'Printing response...\n',
-          JSON.stringify(response, null, 4) + '\n',
-          'POST succeeded.'
-        );
-
-        const nextState = composeNextState(state, response);
-        if (callback) resolve(callback(nextState));
-        resolve(nextState);
-      })
-      .catch(error => {
-        console.log(error);
-        reject(error);
-      });
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+      url: `${host}${path}`,
+      params,
+    }).then(response => {
+      const { data } = response;
+      const nextState = composeNextState(state, data);
+      if (callback) resolve(callback(nextState));
+      return nextState;
+    });
   };
 }
 

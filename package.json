@@ -1,0 +1,34 @@
+{
+  "name": "language-template",
+  "version": "1.0.0",
+  "description": "An Language Package Template for OpenFn",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "make",
+    "test": "mocha --require @babel/register",
+    "test:watch": "mocha -w --require @babel/register"
+  },
+  "author": "Open Function Group",
+  "license": "LGPLv3",
+  "files": [
+    "lib/"
+  ],
+  "dependencies": {
+    "axios": "^0.20.0",
+    "language-common": "github:openfn/language-common#v0.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-function-bind": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-stage-0": "^7.8.3",
+    "@babel/register": "^7.9.0",
+    "assertion-error": "^1.0.1",
+    "chai": "^3.4.0",
+    "deep-eql": "^0.1.3",
+    "mocha": "^7.1.1",
+    "nock": "^12.0.3",
+    "sinon": "^1.17.2"
+  }
+}

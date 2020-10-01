@@ -1,29 +1,27 @@
-# Language Template [![Build Status](https://travis-ci.org/OpenFn/language-template.svg?branch=master)](https://travis-ci.org/OpenFn/language-template)
+# Language OpenFn [![Build Status](https://travis-ci.org/OpenFn/language-openfn.svg?branch=master)](https://travis-ci.org/OpenFn/language-openfn)
 
-Language Pack for building expressions and operations to interact with the
-[TEMPLATE] API.
+Adaptor for building expressions and operations to interact with the OpenFn API.
 
 ## Documentation
 
-## post
+## get
+
+```js
+get('/api/jobs', {
+  params: {
+    project_id: 490,
+  },
+});
+```
 
 #### sample configuration
 
 ```json
 {
-  "username": "taylor@openfn.org",
+  "host": "https://www.openfn.org",
+  "username": "someone@ngo.org",
   "password": "supersecret"
 }
-```
-
-#### sample expression using operation
-
-```js
-post({
-  "url": "api/v1/forms/data/wide/json/formId",
-  "body": {"a":1}
-  "headers": {}
-})
 ```
 
 ## Development

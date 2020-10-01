@@ -4,14 +4,30 @@ Adaptor for building expressions and operations to interact with the OpenFn API.
 
 ## Documentation
 
-## get
+## request
 
 ```js
-get('/api/jobs', {
+request({
+  method: 'get',
+  path: 'jobs',
   params: {
     project_id: 490,
   },
 });
+request(
+  {
+    method: 'post',
+    path: 'jobs',
+    data: {
+      trigger_id: 1,
+      expression: 'steps()',
+    },
+  },
+  state => {
+    console.log('cool callback!');
+    return state;
+  }
+);
 ```
 
 #### sample configuration

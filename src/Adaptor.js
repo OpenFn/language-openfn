@@ -76,42 +76,39 @@ function logout(state) {
 }
 
 /**
- * Make a GET request
+ * Make a request to the api
  * @example
  * execute(
- *   get(endpoint, params)
+ *   request({ method: get, path: '/jobs' })
  * )(state)
  * @constructor
  * @param {object} params - data to make the fetch
  * @returns {Operation}
  */
-export function get(path, parameters, callback) {
+export function request(options, callback) {
   return state => {
     const { host, jwt } = state.configuration;
-    const { url, params } = expandReferences(parameters)(state);
-
-    console.log(path);
+    const { method, path, params, data } = expandReferences(options)(state);
 
     return axios({
-      method: 'get',
+      method,
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
-      url: `${host}${path}`,
+      url: `${host}/api/${path}`,
       params,
+      data,
     }).then(response => {
       const { data } = response;
       const nextState = composeNextState(state, data);
-      if (callback) resolve(callback(nextState));
+      if (callback) {
+        return callback(nextState);
+      }
       return nextState;
     });
   };
 }
 
-// Note that we expose the entire axios package to the user here.
-exports.axios = axios;
-
-// What functions do you want from the common adaptor?
 export {
   alterState,
   dataPath,

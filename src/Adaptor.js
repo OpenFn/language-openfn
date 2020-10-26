@@ -76,11 +76,12 @@ function logout(state) {
 }
 
 /**
- * Make a request to the api
+ * Make a POST request
+ * @public
  * @example
- * request({ method: get, path: '/jobs' })
- * @constructor
- * @param {object} params - data to make the request
+ *  request({method: 'get', path: '/jobs/});
+ * @function
+ * @param {object} options - Body, Query, Headers and Authentication parameters
  * @param {function} callback - (Optional) Callback function
  * @returns {Operation}
  */

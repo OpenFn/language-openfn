@@ -78,11 +78,10 @@ function logout(state) {
 /**
  * Make a request to the api
  * @example
- * execute(
- *   request({ method: get, path: '/jobs' })
- * )(state)
+ * request({ method: get, path: '/jobs' })
  * @constructor
- * @param {object} params - data to make the fetch
+ * @param {object} params - data to make the request
+ * @param {function} callback - (Optional) Callback function
  * @returns {Operation}
  */
 export function request(options, callback) {

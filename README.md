@@ -36,7 +36,8 @@ request(
 {
   "host": "https://www.openfn.org",
   "username": "someone@ngo.org",
-  "password": "supersecret"
+  "password": "supersecret",
+  "projectId": "ID"
 }
 ```
 
@@ -47,3 +48,5 @@ Clone the repo, run `npm install`.
 Run tests using `npm run test` or `npm run test:watch`
 
 Build the project using `make`.
+
+To build the docs for this repo, run `./node_modules/.bin/jsdoc --readme ./README.md ./lib -d docs`.

@@ -2,7 +2,7 @@ import {
   execute as commonExecute,
   composeNextState,
   expandReferences,
-} from 'language-common';
+} from '@openfn/language-common';
 import axios from 'axios';
 import { resolve as resolveUrl } from 'url';
 import { resolve } from 'path';
@@ -80,7 +80,7 @@ function logout(state) {
  * @public
  * @example
  *  request({method: 'get', path: '/jobs/});
- * @function
+ * @constructor
  * @param {object} options - Body, Query, Headers and Authentication parameters
  * @param {function} callback - (Optional) Callback function
  * @returns {Operation}
@@ -111,12 +111,14 @@ export function request(options, callback) {
 
 export {
   alterState,
+  combine,
   dataPath,
   dataValue,
   each,
   field,
   fields,
+  http,
   lastReferenceValue,
   merge,
   sourceValue,
-} from 'language-common';
+} from '@openfn/language-common';

@@ -1,7 +1,12 @@
 {
-  "name": "language-openfn",
+  "name": "@openfn/language-openfn",
   "version": "1.0.2",
   "description": "An (experimental) adaptor for accessing the OpenFn web API",
+  "homepage": "https://docs.openfn.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openfn/language-openfn.git"
+  },
   "main": "lib/index.js",
   "scripts": {
     "build": "make",
@@ -15,7 +20,7 @@
   ],
   "dependencies": {
     "axios": "^0.20.0",
-    "language-common": "github:openfn/language-common#v0.3.0"
+    "@openfn/language-common": "1.2.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

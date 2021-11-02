@@ -42,7 +42,8 @@ export function execute(...operations) {
 }
 
 function login(state) {
-  const { host, password, username } = state.configuration;
+  const { configuration } = state;
+  const { host, password, username } = configuration;
 
   return axios({
     method: 'post',
@@ -56,7 +57,7 @@ function login(state) {
   }).then(response => {
     console.log('Authentication succeeded.');
     const { jwt } = response.data;
-    return { ...state, configuration: { host, jwt } };
+    return { ...state, configuration: { ...configuration, host, jwt } };
   });
 }
 

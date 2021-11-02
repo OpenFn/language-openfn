@@ -112,11 +112,13 @@ export function request(options, callback) {
 
 export {
   alterState,
+  beta,
   combine,
   dataPath,
   dataValue,
   each,
   field,
+  fn,
   fields,
   http,
   lastReferenceValue,

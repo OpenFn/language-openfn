@@ -4,8 +4,8 @@ import {
   expandReferences,
 } from '@openfn/language-common';
 import axios from 'axios';
-import { resolve as resolveUrl } from 'url';
 import { resolve } from 'path';
+import { version } from '../package.json';
 
 /** @module Adaptor */
 
@@ -48,6 +48,7 @@ function login(state) {
   return axios({
     method: 'post',
     url: `${host}/api/login`,
+    headers: { 'User-Agent': `language-openfn-v${version}` },
     data: {
       session: {
         email: username,

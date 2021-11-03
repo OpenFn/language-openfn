@@ -23,8 +23,8 @@
     "ast.json"
   ],
   "dependencies": {
-    "axios": "^0.21.1",
-    "@openfn/language-common": "1.4.2"
+    "@openfn/language-common": "1.4.2",
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

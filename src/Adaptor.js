@@ -4,10 +4,11 @@ import {
   expandReferences,
 } from '@openfn/language-common';
 import axios from 'axios';
-import { resolve as resolveUrl } from 'url';
 import { resolve } from 'path';
 
-/** @module Adaptor */
+import { version } from '../package.json';
+const defaultHeaders = { 'User-Agent': `language-openfn-v${version}` };
+
 
 /**
  * Execute a sequence of operations.
@@ -48,6 +49,7 @@ function login(state) {
   return axios({
     method: 'post',
     url: `${host}/api/login`,
+    headers: { ...defaultHeaders },
     data: {
       session: {
         email: username,
@@ -68,6 +70,7 @@ function logout(state) {
     method: 'post',
     url: `${host}/api/logout`,
     headers: {
+      ...defaultHeaders,
       Authorization: `Bearer ${jwt}`,
     },
   }).then(() => {
@@ -94,6 +97,7 @@ export function request(options, callback) {
     return axios({
       method,
       headers: {
+        ...defaultHeaders,
         Authorization: `Bearer ${jwt}`,
       },
       url: `${host}/api/${path}`,
